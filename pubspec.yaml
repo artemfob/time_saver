@@ -1,0 +1,43 @@
+name: app_generator
+description: "generator"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  go_router: ^13.2.1
+  bloc: ^8.1.3
+  dio: ^5.4.1
+  android_play_install_referrer: ^0.3.0
+  firebase_core: ^2.27.0
+  firebase_messaging: ^14.7.19
+  flutter_bloc: ^8.1.4
+  webview_flutter: ^4.5.0
+  freezed: ^2.4.7
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  cached_network_image: ^3.3.1
+  flutter_launcher_icons: ^0.13.1
+  flutter_local_notifications: ^17.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  android: "icon"
+  ios: true
+  image_path: "assets/icon.png"
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+  assets:
+     - assets/icon.png
