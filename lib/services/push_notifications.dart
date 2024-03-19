@@ -33,7 +33,6 @@ class PushNotifications {
     //       await _getByteArrayFromUrl('https://dummyimage.com/48x48'));
 
     AndroidNotificationDetails androidPlatformChannelSpecifics;
-    print(message.notification?.android?.imageUrl);
     if (message.notification?.android?.imageUrl != null) {
       final ByteArrayAndroidBitmap bigPicture = ByteArrayAndroidBitmap(
           await _getByteArrayFromUrl(

@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return BlocListener<GameCubit, GameState>(
       listener: (context, state) async {
-        await Future.delayed(Duration(seconds: 1)); //todo remove if need
+        await Future.delayed(const Duration(seconds: 1)); //todo remove if need
         // if (state is WebView) {
         //   context.go(WebViewScreen.path);
         // } else if (state is Quiz) {

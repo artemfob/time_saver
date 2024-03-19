@@ -29,7 +29,7 @@ class QuestionFormWidget extends StatelessWidget {
           style: TextStyle(
             color: Colors.white.withOpacity(0.7),
             fontWeight: FontWeight.w400,
-            fontSize: 18,
+            fontSize: 24,
           ),
         ),
         const SizedBox(
@@ -55,17 +55,18 @@ class QuestionFormWidget extends StatelessWidget {
                 child: Container(
                     width: MediaQuery.of(context).size.width * 1,
                     alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: 22, top: 12, bottom: 12),
-                    margin: const EdgeInsets.only(bottom: 8),
+                    padding:
+                        const EdgeInsets.only(left: 22, top: 12, bottom: 12),
+                    margin: const EdgeInsets.only(bottom: 18),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                             color: Colors.white.withOpacity(0.22), width: 0.75),
-                        color: Color.fromRGBO(47, 44, 51, 1.0)),
+                        color: const Color.fromRGBO(47, 44, 51, 1.0)),
                     child: Text(
                         '${markers[question.answers.indexOf(e)]} ${e.text}',
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: Colors.white.withOpacity(0.7)))),
               ),
@@ -73,7 +74,7 @@ class QuestionFormWidget extends StatelessWidget {
           }).toList(),
         )),
         const SizedBox(
-          height: 90,
+          height: 140,
         )
       ],
     );

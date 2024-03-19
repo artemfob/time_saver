@@ -21,7 +21,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(31, 27, 34, 1.0),
+      backgroundColor: const Color.fromRGBO(31, 27, 34, 1.0),
       body: SafeArea(
         child: finish
             ? const _FinishedQuizWidget()
@@ -79,7 +79,9 @@ class _FinishedQuizWidget extends StatelessWidget {
     return Center(
       child: Text(
         'You finished Quiz with ${context.read<ScoreCubit>().state.score?.toStringAsFixed(0)} points! Congrats!',
-        style: const TextStyle(color: Colors.white70),
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+            color: Colors.white70, fontSize: 24, fontWeight: FontWeight.w400),
       ),
     );
   }

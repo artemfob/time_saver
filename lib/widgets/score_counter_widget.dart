@@ -7,12 +7,17 @@ class ScoreCounterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      (context.watch<ScoreCubit>().state.score ?? 0).toStringAsFixed(0),
-      style: TextStyle(
-          fontSize: 56,
-          fontWeight: FontWeight.w700,
-          color: Colors.white.withOpacity(0.7)),
+    return Column(
+      children: [
+        Text(
+          (context.watch<ScoreCubit>().state.score ?? 0).toStringAsFixed(0),
+          style: TextStyle(
+              fontSize: 56,
+              fontWeight: FontWeight.w700,
+              height: 1,
+              color: Colors.white.withOpacity(0.7)),
+        ),
+      ],
     );
   }
 }
