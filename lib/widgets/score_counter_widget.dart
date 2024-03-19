@@ -7,16 +7,12 @@ class ScoreCounterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          color: Colors.amberAccent.withOpacity(0.8),
-          borderRadius: BorderRadius.circular(100)),
-      child: Text(
-        (context.watch<ScoreCubit>().state.score ?? 0).toStringAsFixed(0),
-        style: const TextStyle(
-            fontSize: 20, fontWeight: FontWeight.w700, color: Colors.redAccent),
-      ),
+    return Text(
+      (context.watch<ScoreCubit>().state.score ?? 0).toStringAsFixed(0),
+      style: TextStyle(
+          fontSize: 56,
+          fontWeight: FontWeight.w700,
+          color: Colors.white.withOpacity(0.7)),
     );
   }
 }

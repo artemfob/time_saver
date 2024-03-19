@@ -1,11 +1,9 @@
 import 'package:app_generator/bloc/index.dart';
 import 'package:app_generator/data/models/question/model.dart';
 import 'package:app_generator/data/questions.dart';
-import 'package:app_generator/screens/splash_screen.dart';
 import 'package:app_generator/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class QuizScreen extends StatefulWidget {
   static const String path = '/quiz';
@@ -23,15 +21,19 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(31, 27, 34, 1.0),
       body: SafeArea(
         child: finish
             ? const _FinishedQuizWidget()
             : PageView.builder(
                 controller: controller,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: questions.length,
                 itemBuilder: (BuildContext context, int index) {
                   final question = QuestionModel.fromJson(questions[index]);
-                  return Padding(
+                  return Container(
+                    decoration: const BoxDecoration(
+                        color: Color.fromRGBO(31, 27, 34, 1.0)),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Column(
@@ -53,12 +55,11 @@ class _QuizScreenState extends State<QuizScreen> {
                             setState(() {
                               finish = true;
                             });
-                            await Future.delayed(const Duration(seconds: 5),
-                                () => context.push(SplashScreen.path));
                           },
                           goNext: () => controller.nextPage(
                               duration: const Duration(milliseconds: 250),
                               curve: Curves.easeOut),
+                          index: index + 1,
                         ))
                       ],
                     ),
@@ -77,7 +78,9 @@ class _FinishedQuizWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-          'You finished Quiz with ${context.read<ScoreCubit>().state.score?.toStringAsFixed(0)} points! Congrats!'),
+        'You finished Quiz with ${context.read<ScoreCubit>().state.score?.toStringAsFixed(0)} points! Congrats!',
+        style: const TextStyle(color: Colors.white70),
+      ),
     );
   }
 }

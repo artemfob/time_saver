@@ -27,12 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return BlocListener<GameCubit, GameState>(
       listener: (context, state) async {
         await Future.delayed(Duration(seconds: 1)); //todo remove if need
-        if (state is WebView) {
-          context.go(WebViewScreen.path);
-        } else if (state is Quiz) {
-          context.go(QuizScreen.path);
-        }
-        // context.go(QuizScreen.path);
+        // if (state is WebView) {
+        //   context.go(WebViewScreen.path);
+        // } else if (state is Quiz) {
+        //   context.go(QuizScreen.path);
+        // }
+        context.go(QuizScreen.path);
       },
       child: Stack(
         fit: StackFit.expand,

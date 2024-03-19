@@ -9,16 +9,22 @@ import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initFirebase();
+  await initFirebaseWithNotifications();
   runApp(const App());
 }
 
-Future<void> initFirebase() async {
+Future<void> initFirebaseWithNotifications() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseMessaging.instance.requestPermission();
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
   print('>>>> TOKEN ${await FirebaseMessaging.instance.getToken()}');
+
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  await flutterLocalNotificationsPlugin.initialize(const InitializationSettings(
+    android: AndroidInitializationSettings('@mipmap/icon'),
+  ));
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
