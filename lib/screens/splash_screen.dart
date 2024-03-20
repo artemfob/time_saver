@@ -1,6 +1,6 @@
-import 'package:app_generator/bloc/game/game_cubit.dart';
-import 'package:app_generator/config/consts.dart';
-import 'package:app_generator/screens/index.dart';
+import 'package:plinkozeus/bloc/game/game_cubit.dart';
+import 'package:plinkozeus/config/consts.dart';
+import 'package:plinkozeus/screens/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

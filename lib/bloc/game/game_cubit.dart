@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:android_play_install_referrer/android_play_install_referrer.dart';
-import 'package:app_generator/config/consts.dart';
+import 'package:plinkozeus/config/consts.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -13,14 +13,26 @@ class GameCubit extends Cubit<GameState> {
   GameCubit() : super(GameInitial());
 
   Future init() async {
-    ReferrerDetails? referrerDetails =
-        await AndroidPlayInstallReferrer.installReferrer;
+    String referrer;
+
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      ReferrerDetails referrerDetails =
+          await AndroidPlayInstallReferrer.installReferrer;
+
+      if (referrerDetails.installReferrer == null) {
+        referrer = '';
+      } else {
+        referrer = referrerDetails.installReferrer!;
+      } // referrerDetails = referrerDetails;
+    } catch (e) {
+      referrer = "error_while_retrieving_referrer";
+      // referrerDetailsString = 'Failed to get referrer details: $e';
+    }
 
     final response = await Dio()
         .get(Constants_.requestUrl)
         .then((res) async => await res.data);
-
-    final String referrer = referrerDetails.installReferrer ?? '';
 
     final String token = await FirebaseMessaging.instance.getToken() ?? '';
 

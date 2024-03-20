@@ -12,7 +12,7 @@
 
     <application
         android:enableOnBackInvokedCallback="true"
-        android:label="app_generator"
+        android:label="plinkozeus"
         android:name="${applicationName}"
         android:icon="@mipmap/icon">
         <meta-data

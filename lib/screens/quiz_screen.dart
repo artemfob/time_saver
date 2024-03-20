@@ -1,7 +1,7 @@
-import 'package:app_generator/bloc/index.dart';
-import 'package:app_generator/data/models/question/model.dart';
-import 'package:app_generator/data/questions.dart';
-import 'package:app_generator/widgets/index.dart';
+import 'package:plinkozeus/bloc/index.dart';
+import 'package:plinkozeus/data/models/question/model.dart';
+import 'package:plinkozeus/data/questions.dart';
+import 'package:plinkozeus/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

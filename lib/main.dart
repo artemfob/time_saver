@@ -1,11 +1,22 @@
-import 'package:app_generator/firebase_options.dart';
-import 'package:app_generator/services/push_notifications.dart';
+import 'dart:io';
+
+import 'package:plinkozeus/firebase_options.dart';
+import 'package:plinkozeus/services/push_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'app.dart';
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +27,7 @@ void main() async {
 Future<void> initFirebaseWithNotifications() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.instance.requestPermission();
+  HttpOverrides.global = MyHttpOverrides();
 
   print('>>>> TOKEN ${await FirebaseMessaging.instance.getToken()}');
 

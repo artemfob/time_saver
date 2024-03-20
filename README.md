@@ -1,4 +1,4 @@
-# app_generator
+# plinkozeus
 
 generator
 

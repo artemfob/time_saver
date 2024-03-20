@@ -50,11 +50,11 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyACWaK-Ekzst7d9LOxisQ1Ph1tRcEVKok0',
-    appId: '1:227058919766:android:5c198f8080860f49b2cef7',
-    messagingSenderId: '227058919766',
-    projectId: 'generator-6a46b',
-    storageBucket: 'generator-6a46b.appspot.com',
+    apiKey: 'AIzaSyBqIoMh4bPM4axi5yPxxiw8w9cJXSijiKc',
+    appId: '1:981576885897:android:b256de1bb9bb590ba24858',
+    messagingSenderId: '981576885897',
+    projectId: 'bananza-ce7b4',
+    storageBucket: 'bananza-ce7b4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '227058919766',
     projectId: 'generator-6a46b',
     storageBucket: 'generator-6a46b.appspot.com',
-    iosBundleId: 'com.example.generator.appGenerator',
+    iosBundleId: 'com.mycompany.generator.appGenerator',
   );
 }

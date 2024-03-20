@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "227058919766",
-    "project_id": "generator-6a46b",
-    "storage_bucket": "generator-6a46b.appspot.com"
+    "project_number": "981576885897",
+    "project_id": "bananza-ce7b4",
+    "storage_bucket": "bananza-ce7b4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:227058919766:android:5c198f8080860f49b2cef7",
+        "mobilesdk_app_id": "1:981576885897:android:7a7277af08106729a24858",
         "android_client_info": {
-          "package_name": "com.example.generator.app_generator"
+          "package_name": "com.mycompany.bananapavloo"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyACWaK-Ekzst7d9LOxisQ1Ph1tRcEVKok0"
+          "current_key": "AIzaSyBqIoMh4bPM4axi5yPxxiw8w9cJXSijiKc"
         }
       ],
       "services": {
