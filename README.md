@@ -1,4 +1,4 @@
-# plinkozeus
+# plinkozeusquiz
 
 generator
 

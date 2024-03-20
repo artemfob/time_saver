@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plinkozeus/bloc/index.dart';
+import 'package:plinkozeusquiz/bloc/index.dart';
 
 import 'screens/main.dart';
 

@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:plinkozeus/config/consts.dart';
+import 'package:plinkozeusquiz/config/consts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -14,34 +14,37 @@ class GameCubit extends Cubit<GameState> {
 
   Future init() async {
     emit(Loading());
-    String referrer;
+    String referrer = await SharedPreferences.getInstance()
+        .then((value) => value.getString('referrer') ?? "");
 
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      ReferrerDetails referrerDetails =
-          await AndroidPlayInstallReferrer.installReferrer;
+    if (referrer.isEmpty) {
+      // Platform messages may fail, so we use a try/catch PlatformException.
+      try {
+        ReferrerDetails referrerDetails =
+            await AndroidPlayInstallReferrer.installReferrer;
 
-      if (referrerDetails.installReferrer == null) {
-        referrer = '';
-      } else {
-        referrer = referrerDetails.installReferrer!;
-      } // referrerDetails = referrerDetails;
-    } catch (e) {
-      referrer = "error_while_retrieving_referrer";
-      // referrerDetailsString = 'Failed to get referrer details: $e';
+        if (referrerDetails.installReferrer == null) {
+          referrer = '';
+        } else {
+          referrer = referrerDetails.installReferrer!;
+        } // referrerDetails = referrerDetails;
+      } catch (e) {
+        referrer = "error_while_retrieving_referrer";
+        // referrerDetailsString = 'Failed to get referrer details: $e';
+      }
     }
 
-    final response = await Dio()
-        .get(Constants_.requestUrl)
-        .then((res) async => await res.data);
-
     final String token = await FirebaseMessaging.instance.getToken() ?? '';
+    final keitaroURL =
+        '${Constants_.requestUrl}&registrationToken=$token&instref=$referrer';
+
+    print("KeitaroURL $keitaroURL");
+
+    final response =
+        await Dio().get(keitaroURL).then((res) async => await res.data);
 
     final bool playGame =
         response == Constants_.showWebView && referrer.isNotEmpty;
-
-    final webViewUrl =
-        '${Constants_.requestUrl}&registrationToken=$token&instref=$referrer';
 
     if (playGame) {
       await SharedPreferences.getInstance()
@@ -63,8 +66,8 @@ class GameCubit extends Cubit<GameState> {
             },
           ),
         )
-        ..loadRequest(Uri.parse(webViewUrl));
-      emit(WebView(keitaroUrl: webViewUrl, controller: controller));
+        ..loadRequest(Uri.parse(keitaroURL));
+      emit(WebView(keitaroUrl: keitaroURL, controller: controller));
     } else {
       emit(Quiz());
     }

@@ -1,4 +1,4 @@
-package com.mycompany.generator.plinkozeus
+package com.mycompany.generator.plinkozeusquiz
 
 import io.flutter.embedding.android.FlutterActivity
 

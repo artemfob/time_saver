@@ -1,222 +1,194 @@
 final List<Map<String, dynamic>> questions = [
   {
-    'questionText': 'What is Bananza?',
+    'questionText': 'What is Gates of Olympus?',
     'answers': [
       {'text': 'A tropical fruit', 'score': 0},
-      {'text': 'An online game', 'score': 100},
-      {'text': 'A type of dance', 'score': 0},
+      {'text': 'An online game', 'score': 0},
+      {'text': 'A slot game', 'score': 100},
       {'text': 'A new cryptocurrency', 'score': 0},
     ],
   },
   {
-    'questionText': 'Who developed Bananza?',
+    'questionText': 'Who developed Gates of Olympus?',
     'answers': [
       {'text': 'Google', 'score': 0},
       {'text': 'Apple', 'score': 0},
       {'text': 'Microsoft', 'score': 0},
-      {'text': 'Bananza Studios', 'score': 100},
+      {'text': 'Pragmatic Play', 'score': 100},
     ],
   },
   {
-    'questionText': 'In which year was Bananza first released?',
+    'questionText': 'In which year was Gates of Olympus first released?',
     'answers': [
       {'text': '2010', 'score': 0},
       {'text': '2015', 'score': 0},
-      {'text': '2020', 'score': 100},
-      {'text': '2022', 'score': 0},
+      {'text': '2020', 'score': 0},
+      {'text': '2022', 'score': 100},
     ],
   },
   {
-    'questionText': 'What genre does Bananza belong to?',
+    'questionText': 'What genre does Gates of Olympus belong to?',
     'answers': [
       {'text': 'Adventure', 'score': 0},
-      {'text': 'Simulation', 'score': 100},
-      {'text': 'Action', 'score': 0},
+      {'text': 'Simulation', 'score': 0},
+      {'text': 'Slot', 'score': 100},
       {'text': 'Strategy', 'score': 0},
     ],
   },
   {
-    'questionText':
-        'How many players can participate in a single game of Bananza?',
+    'questionText': 'How many reels does Gates of Olympus have?',
     'answers': [
-      {'text': 'Solo only', 'score': 0},
-      {'text': 'Up to 4 players', 'score': 100},
-      {'text': 'Up to 8 players', 'score': 0},
-      {'text': 'Unlimited players', 'score': 0},
+      {'text': '3', 'score': 0},
+      {'text': '5', 'score': 0},
+      {'text': '6', 'score': 0},
+      {'text': '8', 'score': 100},
     ],
   },
   {
-    'questionText': 'What is the objective of Bananza?',
+    'questionText':
+        'What is the maximum number of paylines in Gates of Olympus?',
     'answers': [
-      {'text': 'Collecting stamps', 'score': 0},
-      {'text': 'Building cities', 'score': 0},
-      {'text': 'Growing virtual crops', 'score': 100},
+      {'text': '10', 'score': 0},
+      {'text': '20', 'score': 0},
+      {'text': '30', 'score': 0},
+      {'text': '100', 'score': 100},
+    ],
+  },
+  {
+    'questionText': 'Which symbol represents the Wild in Gates of Olympus?',
+    'answers': [
+      {'text': 'Zeus', 'score': 0},
+      {'text': 'Pegasus', 'score': 0},
+      {'text': 'Olympus', 'score': 0},
+      {'text': 'Thunderbolt', 'score': 100},
+    ],
+  },
+  {
+    'questionText': 'What is the highest paying symbol in Gates of Olympus?',
+    'answers': [
+      {'text': 'Zeus', 'score': 100},
+      {'text': 'Pegasus', 'score': 0},
+      {'text': 'Olympus', 'score': 0},
+      {'text': 'Thunderbolt', 'score': 0},
+    ],
+  },
+  {
+    'questionText':
+        'Which feature triggers the Free Spins in Gates of Olympus?',
+    'answers': [
+      {'text': 'Landing 3 Scatter symbols', 'score': 100},
+      {'text': 'Collecting gold coins', 'score': 0},
+      {'text': 'Defeating monsters', 'score': 0},
       {'text': 'Solving puzzles', 'score': 0},
     ],
   },
   {
-    'questionText': 'Which platform is Bananza primarily available on?',
+    'questionText':
+        'How many Free Spins are awarded when the feature is triggered in Gates of Olympus?',
     'answers': [
-      {'text': 'PlayStation', 'score': 0},
-      {'text': 'Xbox', 'score': 0},
-      {'text': 'PC', 'score': 100},
-      {'text': 'Mobile devices', 'score': 0},
+      {'text': '5', 'score': 0},
+      {'text': '10', 'score': 0},
+      {'text': '15', 'score': 0},
+      {'text': '20', 'score': 100},
     ],
   },
   {
-    'questionText': 'What is the in-game currency of Bananza called?',
+    'questionText':
+        'Which ancient Greek deity is depicted as a symbol in Gates of Olympus?',
     'answers': [
-      {'text': 'Gold coins', 'score': 0},
-      {'text': 'Bananza Bucks', 'score': 100},
-      {'text': 'Diamonds', 'score': 0},
-      {'text': 'Gems', 'score': 0},
+      {'text': 'Athena', 'score': 0},
+      {'text': 'Apollo', 'score': 0},
+      {'text': 'Hades', 'score': 0},
+      {'text': 'Zeus', 'score': 100},
     ],
   },
   {
-    'questionText': 'Which of the following is a feature in Bananza?',
+    'questionText':
+        'What is the RTP (Return to Player) percentage of Gates of Olympus?',
     'answers': [
-      {'text': 'Space travel', 'score': 0},
-      {'text': 'Time travel', 'score': 0},
-      {'text': 'Online multiplayer', 'score': 100},
-      {'text': 'Magic spells', 'score': 0},
+      {'text': '92%', 'score': 0},
+      {'text': '95%', 'score': 0},
+      {'text': '96.5%', 'score': 0},
+      {'text': '97.5%', 'score': 100},
     ],
   },
   {
-    'questionText': 'What is the name of the main character in Bananza?',
+    'questionText':
+        'Which feature provides the highest win potential in Gates of Olympus?',
     'answers': [
-      {'text': 'Alex', 'score': 0},
-      {'text': 'Banjo', 'score': 0},
-      {'text': 'Ella', 'score': 0},
-      {'text': 'Bananaman', 'score': 100},
+      {'text': 'Free Spins', 'score': 0},
+      {'text': 'Cascading Reels', 'score': 0},
+      {'text': 'Multipliers', 'score': 100},
+      {'text': 'Wild Reels', 'score': 0},
     ],
   },
   {
-    'questionText': 'Which season is most popular in Bananza?',
+    'questionText':
+        'What is the maximum win multiplier available in Gates of Olympus?',
     'answers': [
-      {'text': 'Spring', 'score': 0},
-      {'text': 'Summer', 'score': 0},
-      {'text': 'Fall', 'score': 100},
-      {'text': 'Winter', 'score': 0},
+      {'text': '5x', 'score': 0},
+      {'text': '10x', 'score': 0},
+      {'text': '20x', 'score': 100},
+      {'text': '50x', 'score': 0},
     ],
   },
   {
-    'questionText': 'What is the highest level achievable in Bananza?',
+    'questionText':
+        'Which symbol is often associated with prosperity in Gates of Olympus?',
     'answers': [
-      {'text': 'Level 50', 'score': 0},
-      {'text': 'Level 75', 'score': 0},
-      {'text': 'Level 100', 'score': 100},
-      {'text': 'No maximum level', 'score': 0},
+      {'text': 'Golden Apple', 'score': 100},
+      {'text': 'Silver Coin', 'score': 0},
+      {'text': 'Bronze Shield', 'score': 0},
+      {'text': 'Diamond Ring', 'score': 0},
     ],
   },
   {
-    'questionText': 'Which animal is a common companion in Bananza?',
+    'questionText':
+        'What is the maximum number of consecutive wins achievable in Gates of Olympus?',
     'answers': [
-      {'text': 'Dog', 'score': 0},
-      {'text': 'Cat', 'score': 0},
-      {'text': 'Horse', 'score': 100},
-      {'text': 'Bird', 'score': 0},
+      {'text': '5', 'score': 0},
+      {'text': '10', 'score': 0},
+      {'text': '15', 'score': 0},
+      {'text': 'Unlimited', 'score': 100},
     ],
   },
   {
-    'questionText': 'What is the name of the virtual world in Bananza?',
+    'questionText':
+        'Which mythical creature guards the Gates of Olympus in the game?',
     'answers': [
-      {'text': 'Fantasia', 'score': 0},
-      {'text': 'Banana Land', 'score': 0},
-      {'text': 'Bananaverse', 'score': 100},
-      {'text': 'Dreamland', 'score': 0},
+      {'text': 'Cerberus', 'score': 0},
+      {'text': 'Griffin', 'score': 0},
+      {'text': 'Pegasus', 'score': 0},
+      {'text': 'Sphinx', 'score': 100},
     ],
   },
   {
-    'questionText': 'What is the main resource in Bananza?',
-    'answers': [
-      {'text': 'Wood', 'score': 0},
-      {'text': 'Gold', 'score': 0},
-      {'text': 'Bananas', 'score': 100},
-      {'text': 'Stone', 'score': 0},
-    ],
-  },
-  {
-    'questionText': 'How do players interact with each other in Bananza?',
-    'answers': [
-      {'text': 'Trading cards', 'score': 0},
-      {'text': 'Sending gifts', 'score': 0},
-      {'text': 'Visiting each other’s farms', 'score': 100},
-      {'text': 'Battling in arenas', 'score': 0},
-    ],
-  },
-  {
-    'questionText': 'What is the primary color theme of Bananza?',
+    'questionText': 'What is the main color theme of Gates of Olympus?',
     'answers': [
       {'text': 'Red and blue', 'score': 0},
-      {'text': 'Green and yellow', 'score': 100},
-      {'text': 'Black and white', 'score': 0},
-      {'text': 'Purple and orange', 'score': 0},
+      {'text': 'Green and gold', 'score': 0},
+      {'text': 'Blue and white', 'score': 0},
+      {'text': 'White and gold', 'score': 100},
     ],
   },
   {
     'questionText':
-        'Which of the following is a crop that can be grown in Bananza?',
+        'Which Greek mythological figure is often associated with lightning in Gates of Olympus?',
     'answers': [
-      {'text': 'Coffee beans', 'score': 0},
-      {'text': 'Wheat', 'score': 100},
-      {'text': 'Cotton', 'score': 0},
-      {'text': 'Sunflowers', 'score': 0},
-    ],
-  },
-  {
-    'questionText': 'What is the maximum farm size in Bananza?',
-    'answers': [
-      {'text': '10 acres', 'score': 0},
-      {'text': '25 acres', 'score': 0},
-      {'text': '50 acres', 'score': 100},
-      {'text': 'Unlimited', 'score': 0},
-    ],
-  },
-  {
-    'questionText': 'Which weather condition is not present in Bananza?',
-    'answers': [
-      {'text': 'Rain', 'score': 0},
-      {'text': 'Snow', 'score': 0},
-      {'text': 'Tornado', 'score': 100},
-      {'text': 'Sunny', 'score': 0},
-    ],
-  },
-  {
-    'questionText': 'What is the name of the in-game newspaper in Bananza?',
-    'answers': [
-      {'text': 'Daily News', 'score': 0},
-      {'text': 'Banana Gazette', 'score': 100},
-      {'text': 'Farmers Weekly', 'score': 0},
-      {'text': 'City Times', 'score': 0},
+      {'text': 'Hera', 'score': 0},
+      {'text': 'Poseidon', 'score': 0},
+      {'text': 'Hades', 'score': 0},
+      {'text': 'Zeus', 'score': 100},
     ],
   },
   {
     'questionText':
-        'Which building is essential for processing goods in Bananza?',
+        'What is the name of the bonus feature that randomly activates during the base game in Gates of Olympus?',
     'answers': [
-      {'text': 'Bakery', 'score': 100},
-      {'text': 'Blacksmith', 'score': 0},
-      {'text': 'Marketplace', 'score': 0},
-      {'text': 'Bank', 'score': 0},
+      {'text': 'Divine Intervention', 'score': 100},
+      {'text': 'Olympian Boost', 'score': 0},
+      {'text': 'Zeus’ Favor', 'score': 0},
+      {'text': 'Godly Gift', 'score': 0},
     ],
   },
-  {
-    'questionText': 'What is the main mode of transportation in Bananza?',
-    'answers': [
-      {'text': 'Horses', 'score': 0},
-      {'text': 'Cars', 'score': 0},
-      {'text': 'Bicycles', 'score': 0},
-      {'text': 'Trains', 'score': 100},
-    ],
-  },
-  {
-    'questionText':
-        'What is the currency exchange rate for Bananza Bucks to Gold in the game?',
-    'answers': [
-      {'text': '1:1', 'score': 0},
-      {'text': '2:1', 'score': 0},
-      {'text': '3:1', 'score': 100},
-      {'text': '5:1', 'score': 0},
-    ],
-  }
 ];
