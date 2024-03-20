@@ -1,9 +1,66 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plinkozeus/bloc/index.dart';
+import 'package:plinkozeus/config/consts.dart';
 import 'package:plinkozeus/data/models/question/model.dart';
 import 'package:plinkozeus/data/questions.dart';
 import 'package:plinkozeus/widgets/index.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+class MainScreen extends StatefulWidget {
+  static const String path = '/';
+
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    context.read<GameCubit>().init();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GameCubit, GameState>(
+      builder: (context, state) {
+        return PopScope(
+          canPop: false,
+          onPopInvoked: (status) => false,
+          child: Scaffold(
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: Constants_.splashUrl,
+                        fit: BoxFit.cover,
+                      ),
+                      const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  if (state is Quiz) ...{const QuizScreen()} else
+                    WebViewWidget(
+                        controller: state.controller ?? WebViewController()),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
 
 class QuizScreen extends StatefulWidget {
   static const String path = '/quiz';

@@ -1,7 +1,7 @@
-import 'package:plinkozeus/bloc/index.dart';
-import 'package:plinkozeus/data/models/question/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plinkozeus/bloc/index.dart';
+import 'package:plinkozeus/data/models/question/model.dart';
 
 class QuestionFormWidget extends StatelessWidget {
   const QuestionFormWidget(

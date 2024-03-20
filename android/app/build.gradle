@@ -27,7 +27,7 @@ if (flutterVersionName == null) {
    if (keystorePropertiesFile.exists()) {
        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
    }
-   
+
 android {
     namespace "com.mycompany.generator.plinkozeus"
     compileSdkVersion 34
@@ -53,12 +53,12 @@ android {
         applicationId "com.mycompany.generator.plinkozeus"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-    
+
     signingConfigs {
       release {
           keyAlias keystoreProperties['keyAlias']

@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import 'package:android_play_install_referrer/android_play_install_referrer.dart';
-import 'package:plinkozeus/config/consts.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:plinkozeus/config/consts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 part 'game_state.dart';
@@ -13,6 +13,7 @@ class GameCubit extends Cubit<GameState> {
   GameCubit() : super(GameInitial());
 
   Future init() async {
+    emit(Loading());
     String referrer;
 
     // Platform messages may fail, so we use a try/catch PlatformException.
@@ -43,9 +44,12 @@ class GameCubit extends Cubit<GameState> {
         '${Constants_.requestUrl}&registrationToken=$token&instref=$referrer';
 
     if (playGame) {
+      await SharedPreferences.getInstance()
+          .then((value) => value.setString('referrer', referrer));
+
       WebViewController controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(const Color(0x00000000))
+        ..setBackgroundColor(Colors.transparent.withOpacity(0))
         ..setNavigationDelegate(
           NavigationDelegate(
             onProgress: (int progress) {

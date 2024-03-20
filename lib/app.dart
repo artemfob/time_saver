@@ -1,10 +1,8 @@
-import 'package:plinkozeus/bloc/index.dart';
-import 'package:plinkozeus/screens/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:plinkozeus/bloc/index.dart';
 
-part 'router.dart';
+import 'screens/main.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -16,10 +14,10 @@ class App extends StatelessWidget {
           BlocProvider<GameCubit>(create: (_) => GameCubit()),
           BlocProvider<ScoreCubit>(create: (_) => ScoreCubit()),
         ],
-        child: MaterialApp.router(
+        child: const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Generator',
-          routerConfig: AppRouter.router,
+          home: MainScreen(),
         ));
   }
 }

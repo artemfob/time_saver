@@ -11,8 +11,10 @@ class GameInitial extends GameState {}
 
 class Error extends GameState {}
 
+class Loading extends GameState {}
+
 class WebView extends GameState {
-  WebView({required super.keitaroUrl, required super.controller});
+  WebView({required super.keitaroUrl, super.controller});
 }
 
 class Quiz extends GameState {}
