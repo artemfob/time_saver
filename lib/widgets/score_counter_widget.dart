@@ -10,7 +10,7 @@ class ScoreCounterWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          (context.watch<ScoreCubit>().state.score ?? 0).toStringAsFixed(0),
+          (context.watch<GameCubit>().state.score ?? 0).toStringAsFixed(0),
           style: TextStyle(
               fontSize: 56,
               fontWeight: FontWeight.w700,

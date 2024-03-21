@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plinkozeusquiz/bloc/index.dart';
-import 'package:plinkozeusquiz/data/models/question/model.dart';
 
 class QuestionFormWidget extends StatelessWidget {
   const QuestionFormWidget(
@@ -12,7 +11,7 @@ class QuestionFormWidget extends StatelessWidget {
       required this.lastQuestion,
       required this.index})
       : super(key: key);
-  final QuestionModel question;
+  final Map<String, dynamic> question;
   final bool lastQuestion;
   final int index;
   final void Function() goNext;
@@ -24,7 +23,7 @@ class QuestionFormWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          '$index. ${question.questionText}',
+          '$index. ${question['questionText']}',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white.withOpacity(0.7),
@@ -37,7 +36,7 @@ class QuestionFormWidget extends StatelessWidget {
         ),
         Expanded(
             child: Column(
-          children: question.answers.map((e) {
+          children: List.generate(question['answers'].length, (index) {
             List<String> markers = ['a)', 'b)', 'c)', 'd)'];
 
             return Expanded(
@@ -46,7 +45,9 @@ class QuestionFormWidget extends StatelessWidget {
                 splashColor: Colors.white.withOpacity(0),
                 radius: 0,
                 onTap: () {
-                  context.read<ScoreCubit>().increment(e.score);
+                  context
+                      .read<GameCubit>()
+                      .increment(question['answers'][index]['score']);
                   goNext();
                   if (lastQuestion) {
                     finish();
@@ -64,14 +65,14 @@ class QuestionFormWidget extends StatelessWidget {
                             color: Colors.white.withOpacity(0.22), width: 0.75),
                         color: const Color.fromRGBO(47, 44, 51, 1.0)),
                     child: Text(
-                        '${markers[question.answers.indexOf(e)]} ${e.text}',
+                        '${markers[question['answers'].indexOf(question['answers'][index])]} ${question['answers'][index]['text']}',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: Colors.white.withOpacity(0.7)))),
               ),
             );
-          }).toList(),
+          }),
         )),
         const SizedBox(
           height: 140,

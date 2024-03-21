@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plinkozeusquiz/bloc/index.dart';
 import 'package:plinkozeusquiz/config/consts.dart';
-import 'package:plinkozeusquiz/data/models/question/model.dart';
-import 'package:plinkozeusquiz/data/questions.dart';
 import 'package:plinkozeusquiz/widgets/index.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -85,9 +83,9 @@ class _QuizScreenState extends State<QuizScreen> {
             : PageView.builder(
                 controller: controller,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: questions.length,
+                itemCount: Constants_.questions.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final question = QuestionModel.fromJson(questions[index]);
+                  final question = Constants_.questions[index];
                   return Container(
                     decoration: const BoxDecoration(
                         color: Color.fromRGBO(31, 27, 34, 1.0)),
@@ -107,7 +105,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         Expanded(
                             child: QuestionFormWidget(
                           question: question,
-                          lastQuestion: questions[index] == questions.last,
+                          lastQuestion: question == Constants_.questions.last,
                           finish: () async {
                             setState(() {
                               finish = true;
@@ -135,7 +133,7 @@ class _FinishedQuizWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'You finished Quiz with ${context.read<ScoreCubit>().state.score?.toStringAsFixed(0)} points! Congrats!',
+        'You finished Quiz with ${context.read<GameCubit>().state.score?.toStringAsFixed(0)} points! Congrats!',
         textAlign: TextAlign.center,
         style: const TextStyle(
             color: Colors.white70, fontSize: 24, fontWeight: FontWeight.w400),

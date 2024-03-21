@@ -9,11 +9,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider<GameCubit>(create: (_) => GameCubit()),
-          BlocProvider<ScoreCubit>(create: (_) => ScoreCubit()),
-        ],
+    return BlocProvider<GameCubit>(
+        create: (_) => GameCubit(),
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Generator',
