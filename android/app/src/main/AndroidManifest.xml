@@ -12,7 +12,7 @@
 
     <application
         android:enableOnBackInvokedCallback="true"
-        android:label="plinkozeusquiz"
+          ="Trivia of Zeus Quiz"
         android:name="${applicationName}"
         android:icon="@mipmap/icon">
         <meta-data

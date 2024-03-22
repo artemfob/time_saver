@@ -13,7 +13,7 @@ class App extends StatelessWidget {
         create: (_) => GameCubit(),
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Generator',
+          title: 'Trivia of Zeus Quiz',
           home: MainScreen(),
         ));
   }
