@@ -43,9 +43,13 @@ Future<void> initFirebaseWithNotifications() async {
   ));
 
   final status = await _getSavedPlayerStatus() ?? '';
-  if (status.isEmpty) {
-    await FirebaseMessaging.instance
-        .subscribeToTopic(PlatformDispatcher.instance.locale.countryCode ?? '');
+  final countryCode = PlatformDispatcher.instance.locale.countryCode ?? '';
+
+  if (countryCode.isNotEmpty) {
+    await FirebaseMessaging.instance.subscribeToTopic(countryCode);
+  }
+  if (status.isNotEmpty) {
+    await FirebaseMessaging.instance.subscribeToTopic(status);
   }
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
