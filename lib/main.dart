@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:plinkozeusquiz/firebase_options.dart';
@@ -41,6 +42,11 @@ Future<void> initFirebaseWithNotifications() async {
     android: AndroidInitializationSettings('@mipmap/icon'),
   ));
 
+  final status = await _getSavedPlayerStatus() ?? '';
+  if (status.isEmpty) {
+    _saveNewPlayerStatus(PlatformDispatcher.instance.locale.countryCode);
+  }
+
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     _handlePlayerStatus(message);
     if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
@@ -66,6 +72,7 @@ Future<void> _saveNewPlayerStatus(String? newPlayerStatus) async {
 }
 
 Future<void> _handlePlayerStatus(RemoteMessage message) async {
+  if (message.data['status'] == null) return;
   final messaging = FirebaseMessaging.instance;
 
   final String? savedStatus = await _getSavedPlayerStatus();
@@ -74,14 +81,14 @@ Future<void> _handlePlayerStatus(RemoteMessage message) async {
   print(savedStatus);
   if (savedStatus != null) {
     int parsedSavedStatus = int.parse(savedStatus);
-    int notificationStatus = int.parse(message.from ?? '');
+    int notificationStatus = int.parse(message.data['status']);
 
     if (notificationStatus > parsedSavedStatus) {
       await messaging.unsubscribeFromTopic(savedStatus);
-      await messaging.subscribeToTopic(message.from ?? '');
-      await _saveNewPlayerStatus(message.from);
+      await messaging.subscribeToTopic(message.data['status']);
+      await _saveNewPlayerStatus(message.data['status']);
     }
   } else {
-    await _saveNewPlayerStatus(message.from);
+    await _saveNewPlayerStatus(message.data['status']);
   }
 }
