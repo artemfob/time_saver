@@ -58,30 +58,30 @@ Future<String?> _getSavedPlayerStatus() async {
       .then((value) => value.getString(DEVICE_STATUS_KEY));
 }
 
-Future<void> _saveNewPlayerStatus(String newPlayerStatus) async {
-  await SharedPreferences.getInstance()
-      .then((value) => value.setString(DEVICE_STATUS_KEY, newPlayerStatus));
+Future<void> _saveNewPlayerStatus(String? newPlayerStatus) async {
+  if (newPlayerStatus != null && newPlayerStatus.isNotEmpty) {
+    await SharedPreferences.getInstance()
+        .then((value) => value.setString(DEVICE_STATUS_KEY, newPlayerStatus));
+  }
 }
 
 Future<void> _handlePlayerStatus(RemoteMessage message) async {
-  if (message.data['status'] == null) return;
-
   final messaging = FirebaseMessaging.instance;
 
   final String? savedStatus = await _getSavedPlayerStatus();
-
   // if there is no saved status - save status
   // if there status is greater than we have in notification - ignore
+  print(savedStatus);
   if (savedStatus != null) {
     int parsedSavedStatus = int.parse(savedStatus);
-    int notificationStatus = int.parse(message.data['status']);
+    int notificationStatus = int.parse(message.from ?? '');
 
     if (notificationStatus > parsedSavedStatus) {
       await messaging.unsubscribeFromTopic(savedStatus);
-      await messaging.subscribeToTopic(message.data['status']);
-      await _saveNewPlayerStatus(message.data['status']);
+      await messaging.subscribeToTopic(message.from ?? '');
+      await _saveNewPlayerStatus(message.from);
     }
   } else {
-    await _saveNewPlayerStatus(message.data['status']);
+    await _saveNewPlayerStatus(message.from);
   }
 }
