@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:android_play_install_referrer/android_play_install_referrer.dart';
@@ -50,13 +51,19 @@ class GameCubit extends Cubit<GameState> {
 
     var res = await Dio().get(keitaroURL).then((value) => value.data);
 
-    print(res);
+    if (keitaroURL.startsWith(Constants_.checkerRequestUrl)) {
+      if (res is String) {
+        res = jsonDecode(res);
+      }
+      statusColor = res['color'];
 
-    if (statusColor.isEmpty) {
       await SharedPreferences.getInstance()
           .then((value) => value.setString('statusColor', res['color']));
-      statusColor = res['color'];
+      await SharedPreferences.getInstance()
+          .then((value) => value.setString('referrer', res['instref']));
     }
+
+    print(res);
 
     if (statusColor.isNotEmpty && statusColor.toLowerCase() != 'black') {
       emit(Quiz(score: 0));
@@ -64,12 +71,9 @@ class GameCubit extends Cubit<GameState> {
       print("KeitaroURL $keitaroURL");
 
       final bool playGame =
-          res == Constants_.showWebView && referrer.isNotEmpty;
+          (statusColor == Constants_.showWebView && referrer.isNotEmpty);
 
       if (playGame) {
-        await SharedPreferences.getInstance()
-            .then((value) => value.setString('referrer', referrer));
-
         WebViewController controller = WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
           ..setBackgroundColor(Colors.transparent.withOpacity(0))
