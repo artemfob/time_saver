@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plinkozeusquiz/bloc/index.dart';
-import 'package:plinkozeusquiz/config/consts.dart';
-import 'package:plinkozeusquiz/widgets/index.dart';
+import 'package:queenquiz/bloc/index.dart';
+import 'package:queenquiz/config/consts.dart';
+import 'package:queenquiz/widgets/index.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MainScreen extends StatefulWidget {

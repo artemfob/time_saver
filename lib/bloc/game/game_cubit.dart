@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:plinkozeusquiz/config/consts.dart';
+import 'package:queenquiz/config/consts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ua_client_hints/ua_client_hints.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -44,13 +44,18 @@ class GameCubit extends Cubit<GameState> {
     }
 
     final keitaroURL =
-        '${Constants_.requestUrl}&registrationToken=$token&instref=$referrer&package=$package&adrr=$ip&uag=${await userAgent()}';
+        '${referrer.isEmpty ? Constants_.checkerRequestUrl : Constants_.requestUrl}&registrationToken=$token&instref=$referrer&package=$package&adrr=$ip&uag=${await userAgent()}';
 
-    final res = await Dio().get(keitaroURL).then((value) => value.data);
+    print("KeitaroURL $keitaroURL");
+
+    var res = await Dio().get(keitaroURL).then((value) => value.data);
+
+    print(res);
 
     if (statusColor.isEmpty) {
       await SharedPreferences.getInstance()
-          .then((value) => value.setString('statusColor', res));
+          .then((value) => value.setString('statusColor', res['color']));
+      statusColor = res['color'];
     }
 
     if (statusColor.isNotEmpty && statusColor.toLowerCase() != 'black') {

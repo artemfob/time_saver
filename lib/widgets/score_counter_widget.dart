@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plinkozeusquiz/bloc/index.dart';
+import 'package:queenquiz/bloc/index.dart';
 
 class ScoreCounterWidget extends StatelessWidget {
   const ScoreCounterWidget({Key? key}) : super(key: key);
