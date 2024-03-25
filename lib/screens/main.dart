@@ -76,7 +76,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(31, 27, 34, 1.0),
+      backgroundColor: const Color.fromRGBO(119, 73, 136, 1.0),
       body: SafeArea(
         child: finish
             ? const _FinishedQuizWidget()
@@ -88,7 +88,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   final question = Constants_.questions[index];
                   return Container(
                     decoration: const BoxDecoration(
-                        color: Color.fromRGBO(31, 27, 34, 1.0)),
+                        color: Color.fromRGBO(119, 73, 136, 1.0)),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Column(
@@ -100,7 +100,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                         const ScoreCounterWidget(),
                         const SizedBox(
-                          height: 60,
+                          height: 30,
                         ),
                         Expanded(
                             child: QuestionFormWidget(

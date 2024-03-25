@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tigerquiz/bloc/index.dart';
+import 'package:tigerquiz/widgets/index.dart';
 
 class QuestionFormWidget extends StatelessWidget {
   const QuestionFormWidget(
@@ -22,14 +23,55 @@ class QuestionFormWidget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          '$index. ${question['questionText']}',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.7),
-            fontWeight: FontWeight.w400,
-            fontSize: 24,
-          ),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 30),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black87, width: 2),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16)),
+              child: Text(
+                '${question['questionText']}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.7),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 22,
+                ),
+              ),
+            ),
+            Positioned(
+                top: 0,
+                child: Material(
+                  elevation: 5,
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white.withOpacity(0),
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(color: Colors.black87, width: 2)),
+                    child: Text('#$index',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black87)),
+                  ),
+                ))
+          ],
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        TimerWidget(
+          nextPage: goNext,
         ),
         const SizedBox(
           height: 24,
@@ -37,8 +79,6 @@ class QuestionFormWidget extends StatelessWidget {
         Expanded(
             child: Column(
           children: List.generate(question['answers'].length, (index) {
-            List<String> markers = ['a)', 'b)', 'c)', 'd)'];
-
             return Expanded(
               child: InkWell(
                 highlightColor: Colors.white.withOpacity(0),
@@ -55,28 +95,23 @@ class QuestionFormWidget extends StatelessWidget {
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width * 1,
-                    alignment: Alignment.centerLeft,
-                    padding:
-                        const EdgeInsets.only(left: 22, top: 12, bottom: 12),
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.only(top: 12, bottom: 12),
                     margin: const EdgeInsets.only(bottom: 18),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                            color: Colors.white.withOpacity(0.22), width: 0.75),
-                        color: const Color.fromRGBO(47, 44, 51, 1.0)),
-                    child: Text(
-                        '${markers[question['answers'].indexOf(question['answers'][index])]} ${question['answers'][index]['text']}',
+                            color: Colors.black.withOpacity(0.92), width: 1.75),
+                        color: const Color.fromRGBO(245, 245, 245, 1.0)),
+                    child: Text('${question['answers'][index]['text']}',
                         style: TextStyle(
                             fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white.withOpacity(0.7)))),
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black.withOpacity(0.7)))),
               ),
             );
           }),
         )),
-        const SizedBox(
-          height: 140,
-        )
       ],
     );
   }

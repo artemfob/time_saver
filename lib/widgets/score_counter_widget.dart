@@ -15,7 +15,7 @@ class ScoreCounterWidget extends StatelessWidget {
               fontSize: 56,
               fontWeight: FontWeight.w700,
               height: 1,
-              color: Colors.white.withOpacity(0.7)),
+              color: Colors.white.withOpacity(0.9)),
         ),
       ],
     );
