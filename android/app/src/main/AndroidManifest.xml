@@ -18,7 +18,7 @@
 
     <application
         android:enableOnBackInvokedCallback="true"
-        android:label="Queen Quiz"
+        android:label="Mystery of Tiger"
         android:name="${applicationName}"
         android:icon="@mipmap/icon">
         <meta-data

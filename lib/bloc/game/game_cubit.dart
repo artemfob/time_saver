@@ -6,8 +6,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:queenquiz/config/consts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tigerquiz/config/consts.dart';
 import 'package:ua_client_hints/ua_client_hints.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

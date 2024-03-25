@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:queenquiz/bloc/index.dart';
+import 'package:tigerquiz/bloc/index.dart';
 
 import 'screens/main.dart';
 
