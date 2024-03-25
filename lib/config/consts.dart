@@ -4,7 +4,7 @@ class Constants_ {
   static const String showWebView = 'black';
   static const String packageNameAndroid = 'com.quiz.tiger';
   static const String requestUrl =
-      'https://track.premastex.online/HBDmrk2b?type=inwebview&token=CjSJxLhJ8W3hjtjz';
+      'https://track.premastex.online/HBDmrk2b?type=inwebviewx&token=CjSJxLhJ8W3hjtjz';
   static const String checkerRequestUrl =
       'https://track.premastex.online/HBDmrk2b?type=checker&token=CjSJxLhJ8W3hjtjz';
 
