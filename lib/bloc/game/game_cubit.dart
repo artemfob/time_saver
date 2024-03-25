@@ -45,13 +45,12 @@ class GameCubit extends Cubit<GameState> {
     }
 
     final keitaroURL =
-        '${referrer.isEmpty ? Constants_.checkerRequestUrl : Constants_.requestUrl}&registrationToken=$token&instref=$referrer&package=$package&adrr=$ip&uag=${await userAgent()}';
+        '${referrer.isEmpty || statusColor.isEmpty ? Constants_.checkerRequestUrl : Constants_.requestUrl}&registrationToken=$token&instref=$referrer&package=$package&adrr=$ip&uag=${await userAgent()}';
 
     print("KeitaroURL $keitaroURL");
 
-    var res = await Dio().get(keitaroURL).then((value) => value.data);
-
     if (keitaroURL.startsWith(Constants_.checkerRequestUrl)) {
+      var res = await Dio().get(keitaroURL).then((value) => value.data);
       if (res is String) {
         res = jsonDecode(res);
       }
@@ -61,9 +60,8 @@ class GameCubit extends Cubit<GameState> {
           .then((value) => value.setString('statusColor', res['color']));
       await SharedPreferences.getInstance()
           .then((value) => value.setString('referrer', res['instref']));
+      print(res);
     }
-
-    print(res);
 
     if (statusColor.isNotEmpty && statusColor.toLowerCase() != 'black') {
       emit(Quiz(score: 0));
